@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>原数组</h3>
+    <span id="original_arry"></span>
+    <h3>排序以后的数组</h3>
+    <span id="sort_array"></span>
+    <script>
+        let dom1 = document.getElementById("original_arry");
+        let dom2 = document.getElementById("sort_array");
+        let array = [7,9,6,5,1,2,4,3,9,0];
+        dom1.innerHTML = JSON.stringify(array);
+        function bubblingSort(original_arry){
+            // let sort_array = [];
+           for(let i = 0;i<original_arry.length;i++){
+                for(let j =0;j<original_arry.length-i-1;j++){
+                        if(original_arry[j]<=original_arry[j+1]){
+                                let n = original_arry[j];
+                                original_arry[j]=original_arry[j+1];
+                                original_arry[j+1] = n;
+                                
+                        }
+                }
+
+           }
+           return original_arry;
+        }
+        dom2.innerHTML = JSON.stringify(bubblingSort(array));
+    </script>
+</body>
+</html>

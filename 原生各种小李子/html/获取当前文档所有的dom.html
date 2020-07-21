@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h5>当前页面使用了以下标签以及他们使用的次数</h5>
+        <textarea name="" id="text_id" cols="30" rows="10" value="我是大家的">
+
+        </textarea>
+        <div>
+            <span>具体方法</span>
+            <p>
+
+            </p>
+        </div>
+    </div>
+    <script>
+        function getTags() {
+            let nodes = document.getElementsByTagName("*");
+            console.log(nodes);
+
+            let nodesObj = new Map();
+            let nodeStr = "";
+            for (const iterator of nodes) {
+                if (nodesObj.has(iterator.nodeName)) {
+                    nodesObj.get(iterator.nodeName).num += 1;
+                } else {
+                    nodesObj.set(iterator.nodeName, {
+                        tagName: iterator.nodeName,
+                        num: 1
+                    })
+                }
+            }
+            console.log(nodesObj);
+            for (const [k, iterator] of nodesObj) {
+                console.log("每一次", iterator, k)
+                nodeStr += `标签:${iterator.tagName}   次数 :${iterator.num} \n`;
+            }
+            console.log(nodeStr)
+            document.getElementById("text_id").value = nodeStr;
+            return nodeStr;
+        }
+        getTags();
+
+
+
+        var missingNumber = function (nums) {
+            //容错
+            if (!Array.isArray(nums) || nums.length === 0) {
+                return;
+            }
+            // 排序
+            nums = nums.sort((a,b)=>{
+                    return a-b;
+            });
+
+            console.log("排序结果",nums);
+            //排除 [0]
+            if (nums.length === 1 && nums[0] === 0) {
+                return 1
+            }
+            //排除 数组只有一位 且不为0
+            if (nums.length === 1) {
+                return nums[0] - 1
+            }
+            //正常查找
+            let targetNum;
+            for (let i = 0; i < nums.length; i++) {
+                if (nums[i] + 1 != nums[i + 1]) {
+                    targetNum = nums[i] + 1;
+                    break;
+                }
+            }
+            // 排除连续数组
+            if (targetNum > nums[nums.length - 1]) {
+                if (nums[0] !== 0) {
+                    targetNum = nums[0] - 1;
+                }
+
+
+            }
+            return targetNum;
+        };
+        let ns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49];
+        
+        console.log(missingNumber(ns));
+
+    </script>
+</body>
+
+</html>

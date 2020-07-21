@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>原数组</h3>
+    <span id="original_arry"></span>
+    <h3>排序以后的数组</h3>
+    <span id="sort_array"></span>
+    <script src="../js/methodBase.js"></script>
+    <script>
+        let dom1 = document.getElementById("original_arry");
+        let dom2 = document.getElementById("sort_array");
+        let array = [7,9,6,5,1,2,4,3,9,0];
+        dom1.innerHTML = JSON.stringify(array);
+        function mySort(original_arry){
+            // let sort_array = [];
+            if(original_arry.length<=1){
+                return original_arry;
+            }
+            let init = original_arry.shift();
+            let rightArray = [];
+            let leftArray = [];
+            original_arry.forEach((i,k)=>{
+                if(i<init){
+                    rightArray.push(i);
+                }else{
+                    leftArray.push(i)
+                }
+            })
+            return mySort(rightArray).concat([init],mySort(leftArray));
+        }
+
+        methodBase
+        // dom2.innerHTML = JSON.stringify(mySort(array));
+        dom2.innerHTML = JSON.stringify(methodBase.binaryOrdering({data:array,mode:"bottom"}));
+    </script>
+</body>
+</html>
